@@ -1,0 +1,25 @@
+{
+    "name": "ka4ivan/laravel-view-sortable",
+    "description": "Sort Link and URL for Laravel Framework",
+    "keywords": [
+        "sort", "link", "url", "laravel", "html-sort", "kachula"
+    ],
+    "authors": [
+        {
+            "name": "Kachula Ivan",
+            "email": "ka4ivan.dev@gmail.com",
+            "role": "Architect & Developer",
+            "homepage": "https://github.com/ka4ivan"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0.2",
+        "illuminate/support": "^9.0|^10.0|^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ka4ivan\\laravel-view-sortable\\": "src"
+        }
+    }
+}
