@@ -20,6 +20,9 @@
     "autoload": {
         "psr-4": {
             "ka4ivan\\laravel-view-sortable\\": "src"
-        }
+        },
+        "files": [
+            "src/Support/Sort.php"
+        ]
     }
 }
