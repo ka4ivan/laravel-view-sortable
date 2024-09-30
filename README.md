@@ -4,7 +4,7 @@
 
 1) Require this package with composer
 ```shell
-composer require fomvasss/laravel-url-aliases
+composer require ka4ivan/laravel-view-sortable
 ```
 
 2) Publish package resource:
