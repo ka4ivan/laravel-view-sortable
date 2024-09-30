@@ -1,9 +1,23 @@
 <?php
 
-namespace App\Support;
+namespace Ka4ivan\ViewSortable\Support;
 
-final class Sort
+class Sort
 {
+    protected static $sortUrl;
+    protected static $orderUrl;
+
+    /**
+     * Init props.
+     */
+    protected static function initialize(): void
+    {
+        if (is_null(self::$sortUrl) || is_null(self::$orderUrl)) {
+            self::$sortUrl = config('view-sortable.url.sort', 'sort');
+            self::$orderUrl = config('view-sortable.url.order', 'order');
+        }
+    }
+
     /**
      * @param string $sort
      * @param string|null $text
@@ -13,13 +27,15 @@ final class Sort
      */
     public static function getSortLink(string $sort, string $text = null, string $order = null, string $class = 'lte-sort-link'): string
     {
-        $order = $order ?: ((request()->order === 'asc') ? 'desc' : 'asc');
+        self::initialize();
 
-        $url = self::buildUrl(['sort' => $sort, 'order' => $order]);
-        $image = self::getImage($sort);
+        $order = $order ?: ((request()->{self::$orderUrl} === 'asc') ? 'desc' : 'asc');
+
+        $url = self::buildUrl([self::$sortUrl => $sort, self::$orderUrl => $order]);
+        $image = self::getIcon($sort);
         $text = $text ?: $sort;
 
-        return "<a class='{$class}' href='{$url}'>{$text} {$image}</a>";
+        return "<a class='{$class}' href='{$url}' style='position: relative'>{$text} {$image}</a>";
     }
 
     /**
@@ -29,8 +45,9 @@ final class Sort
      */
     public static function getSortUrl(string $sort, string $order = null): string
     {
-        $order = $order ?: ((request()->order === 'asc') ? 'desc' : 'asc');
+        self::initialize();
 
+        $order = $order ?: ((request()->{self::$orderUrl} === 'asc') ? 'desc' : 'asc');
         $url = self::buildUrl(['sort' => $sort, 'order' => $order]);
 
         return $url;
@@ -49,14 +66,18 @@ final class Sort
      * @param string $sort
      * @return string
      */
-    protected static function getImage(string $sort): string
+    protected static function getIcon(string $sort): string
     {
-        $image = (request()->sort === $sort)
-            ? (request()->order === 'asc'
-                ? '<i class="fas fa-long-arrow-alt-up"></i>'
-                : '<i class="fas fa-long-arrow-alt-down"></i>')
-            : '';
+        self::initialize();
 
-        return $image;
+        if (request()->{self::$sortUrl} === $sort) {
+            $icon = request()->{self::$orderUrl} === 'asc'
+                ? config('view-sortable.icons.asc', 'fas fa-long-arrow-alt-up')
+                : config('view-sortable.icons.desc', 'fas fa-long-arrow-alt-down');
+        } else {
+            $icon = config('view-sortable.icons.default', '');
+        }
+
+        return $icon ? "<i class='{$icon}' style='position: absolute; top: 3px; right: -10px'></i>" : '';
     }
 }

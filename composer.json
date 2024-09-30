@@ -12,6 +12,7 @@
             "homepage": "https://github.com/ka4ivan"
         }
     ],
+    "type": "library",
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -19,10 +20,17 @@
     },
     "autoload": {
         "psr-4": {
-            "ka4ivan\\laravel-view-sortable\\": "src"
+            "Ka4ivan\\ViewSortable\\": "src"
         },
         "files": [
             "src/Support/Sort.php"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ka4ivan\\ViewSortable\\ServiceProvider"
+            ]
+        }
     }
 }
