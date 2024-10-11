@@ -23,22 +23,12 @@ php artisan vendor:publish --provider="Ka4ivan\ViewSortable\ServiceProvider"
 ### Examples usage
 
 ```php
-<th>
-
 {!! \Sort::getSortLink('status', 'Status') !!}
-{{-- <a class="lte-sort-link" href="http://dev.test/admin/orders?sort=status&amp;order=asc" style="position: relative">Status </a> --}}
-
-</th>
-<th>
+{{-- <a class="lte-sort-link" href="http://test.test?sort=status&amp;order=asc" style="position: relative">Status </a> --}}
 
 {!! \Sort::getSortLink(sort: 'city', text: 'City', order: 'desc', class: 'text-black') !!}
-{{-- <a class="text-black" href="http://dev.test/admin/orders?sort=city&amp;order=desc" style="position: relative">City </a> --}}
-
-</th>
-<th>
+{{-- <a class="text-black" href="http://test.test?sort=city&amp;order=desc" style="position: relative">City </a> --}}
 
 {!! (new \Ka4ivan\ViewSortable\Support\Sort)->getSortLink('phone', 'Phone') !!}
-{{-- <a class="lte-sort-link" href="http://dev.test/admin/orders?sort=phone&amp;order=asc" style="position: relative">Phone </a> --}}
-
-</th>
+{{-- <a class="lte-sort-link" href="http://test.test?sort=phone&amp;order=asc" style="position: relative">Phone </a> --}}
 ```
