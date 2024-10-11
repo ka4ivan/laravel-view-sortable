@@ -1,5 +1,10 @@
 # Sort Link and URL for Laravel Framework
 
+[![License](https://img.shields.io/packagist/l/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://packagist.org/packages/ka4ivan/laravel-view-sortable)
+[![Build Status](https://img.shields.io/github/stars/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://github.com/ka4ivan/laravel-view-sortable)
+[![Latest Stable Version](https://img.shields.io/packagist/v/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://packagist.org/packages/ka4ivan/laravel-view-sortable)
+[![Total Downloads](https://img.shields.io/packagist/dt/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://packagist.org/packages/ka4ivan/laravel-view-sortable)
+
 ## Installation
 
 1) Require this package with composer
@@ -18,28 +23,13 @@ php artisan vendor:publish --provider="Ka4ivan\ViewSortable\ServiceProvider"
 ### Examples usage
 
 ```php
-<thead>
-    <tr>
-        <th style="width: 1%">
-            #
-        </th>
-        <th style="width: 20%">
-            User
-        </th>
-        <th>
-            {!! \Ka4ivan\ViewSortable\Support\Sort::getSortLink('status', 'Status') !!}
-        </th>
-        <th>
-            {!! \Ka4ivan\ViewSortable\Support\Sort::getSortLink('city', 'City') !!}
-        </th>
-        <th style="width: 30%">
-            Address
-        </th>
-        <th style="width: 8%" class="text-center">
-            {!! \Ka4ivan\ViewSortable\Support\Sort::getSortLink('phone', 'Phone') !!}
-        </th>
-        <th style="width: 15%">
-        </th>
-    </tr>
-</thead>
+<th>
+    {!! \Sort::getSortLink('status', 'Status') !!}
+</th>
+<th>
+    {!! \Sort::getSortLink(sort: 'city', text: 'City', order: 'asc', class: 'text-black') !!}
+</th>
+<th>
+    {!! (new \Ka4ivan\ViewSortable\Support\Sort)->getSortLink('phone', 'Phone') !!}
+</th>
 ```

@@ -4,17 +4,14 @@ namespace Ka4ivan\ViewSortable\Support;
 
 class Sort
 {
-    protected static $sortUrl;
-    protected static $orderUrl;
+    protected $sortUrl;
+    protected $orderUrl;
 
-    /**
-     * Init props.
-     */
-    protected static function initialize(): void
+    public function __construct()
     {
-        if (is_null(self::$sortUrl) || is_null(self::$orderUrl)) {
-            self::$sortUrl = config('view-sortable.url.sort', 'sort');
-            self::$orderUrl = config('view-sortable.url.order', 'order');
+        if (is_null($this->sortUrl) || is_null($this->orderUrl)) {
+            $this->sortUrl = config('view-sortable.url.sort', 'sort');
+            $this->orderUrl = config('view-sortable.url.order', 'order');
         }
     }
 
@@ -25,14 +22,12 @@ class Sort
      * @param string $class
      * @return string
      */
-    public static function getSortLink(string $sort, string $text = null, string $order = null, string $class = 'lte-sort-link'): string
+    public function getSortLink(string $sort, string $text = null, string $order = null, string $class = 'lte-sort-link'): string
     {
-        self::initialize();
+        $order = $order ?: ((request()->{$this->orderUrl} === 'asc') ? 'desc' : 'asc');
 
-        $order = $order ?: ((request()->{self::$orderUrl} === 'asc') ? 'desc' : 'asc');
-
-        $url = self::buildUrl([self::$sortUrl => $sort, self::$orderUrl => $order]);
-        $image = self::getIcon($sort);
+        $url = $this->buildUrl([$this->sortUrl => $sort, $this->orderUrl => $order]);
+        $image = $this->getIcon($sort);
         $text = $text ?: $sort;
 
         return "<a class='{$class}' href='{$url}' style='position: relative'>{$text} {$image}</a>";
@@ -43,12 +38,10 @@ class Sort
      * @param string|null $order
      * @return string
      */
-    public static function getSortUrl(string $sort, string $order = null): string
+    public function getSortUrl(string $sort, string $order = null): string
     {
-        self::initialize();
-
-        $order = $order ?: ((request()->{self::$orderUrl} === 'asc') ? 'desc' : 'asc');
-        $url = self::buildUrl(['sort' => $sort, 'order' => $order]);
+        $order = $order ?: ((request()->{$this->orderUrl} === 'asc') ? 'desc' : 'asc');
+        $url = $this->buildUrl(['sort' => $sort, 'order' => $order]);
 
         return $url;
     }
@@ -57,7 +50,7 @@ class Sort
      * @param array $queryString
      * @return string
      */
-    protected static function buildUrl(array $queryString): string
+    protected function buildUrl(array $queryString): string
     {
         return url(request()->fullUrlWithQuery($queryString));
     }
@@ -66,12 +59,10 @@ class Sort
      * @param string $sort
      * @return string
      */
-    protected static function getIcon(string $sort): string
+    protected function getIcon(string $sort): string
     {
-        self::initialize();
-
-        if (request()->{self::$sortUrl} === $sort) {
-            $icon = request()->{self::$orderUrl} === 'asc'
+        if (request()->{$this->sortUrl} === $sort) {
+            $icon = request()->{$this->orderUrl} === 'asc'
                 ? config('view-sortable.icons.asc', 'fas fa-long-arrow-alt-up')
                 : config('view-sortable.icons.desc', 'fas fa-long-arrow-alt-down');
         } else {
