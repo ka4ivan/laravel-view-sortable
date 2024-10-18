@@ -16,7 +16,6 @@ composer require ka4ivan/laravel-view-sortable
 ```shell
 php artisan vendor:publish --provider="Ka4ivan\ViewSortable\ServiceProvider"
 ```
-- config
 
 ## Usage
 
