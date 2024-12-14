@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/github/stars/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://github.com/ka4ivan/laravel-view-sortable)
 [![Latest Stable Version](https://img.shields.io/packagist/v/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://packagist.org/packages/ka4ivan/laravel-view-sortable)
 [![Total Downloads](https://img.shields.io/packagist/dt/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://packagist.org/packages/ka4ivan/laravel-view-sortable)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ka4ivan/laravel-view-sortable/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/ka4ivan/laravel-view-sortable/?branch=main)
+[![Quality Score](https://img.shields.io/scrutinizer/g/ka4ivan/laravel-view-sortable.svg?style=for-the-badge)](https://scrutinizer-ci.com/g/ka4ivan/laravel-view-sortable/?branch=main)
 
 ## Installation
 
