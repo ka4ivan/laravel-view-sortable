@@ -31,4 +31,7 @@ php artisan vendor:publish --provider="Ka4ivan\ViewSortable\ServiceProvider"
 
 {!! (new \Ka4ivan\ViewSortable\Support\Sort)->getSortLink('phone', 'Phone') !!}
 // <a class="lte-sort-link" href="http://test.test?sort=phone&amp;order=asc" style="position: relative">Phone </a>
+
+{!! \Sort::getSortUrl('status', 'asc') !!}
+// http://test.test?sort=status&order=asc
 ```
