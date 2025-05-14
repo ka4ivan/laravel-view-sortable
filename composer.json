@@ -26,6 +26,15 @@
             "src/Support/Sort.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ka4ivan\\ViewSortable\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-text --coverage-clover=coverage.clover"
+    },
     "extra": {
         "laravel": {
             "providers": [
