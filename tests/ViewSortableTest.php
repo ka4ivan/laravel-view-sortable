@@ -36,6 +36,18 @@ class ViewSortableTest extends TestCase
         $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
     }
 
+//    public function test_facade_html_link_required_params_with_request()
+//    {
+//        request()->merge([
+//            'sort' => 'name',
+//            'order' => 'asc',
+//        ]);
+//
+//        $expected = '<a class="lte-sort-link" href="http://example.com?sort=status&order=desc" style="position: relative">Status </a>';
+//
+//        $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
+//    }
+
     public function test_facade_html_link_all_params()
     {
         $expected = '<a class="text-black" href="http://example.com?sort=city&order=desc&locale=uk" style="position: relative">City </a>';
