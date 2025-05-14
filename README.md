@@ -26,12 +26,18 @@ php artisan vendor:publish --provider="Ka4ivan\ViewSortable\ServiceProvider"
 {!! \Sort::getSortLink('status', 'Status') !!}
 // <a class="lte-sort-link" href="http://test.test?sort=status&order=asc" style="position: relative">Status </a>
 
-{!! \Sort::getSortLink(sort: 'city', text: 'City', order: 'desc', class: 'text-black') !!}
-// <a class="text-black" href="http://test.test?sort=city&order=desc" style="position: relative">City </a>
+{!! \Sort::getSortLink(sort: 'city', text: 'City', order: 'desc', class: 'text-black', query: ['locale' => 'uk']) !!}
+// <a class="text-black" href="http://test.test?sort=city&order=desc&locale=uk" style="position: relative">City </a>
 
 {!! (new \Ka4ivan\ViewSortable\Support\Sort)->getSortLink('phone', 'Phone') !!}
 // <a class="lte-sort-link" href="http://test.test?sort=phone&order=asc" style="position: relative">Phone </a>
 
 {!! \Sort::getSortUrl('status', 'asc') !!}
 // http://test.test?sort=status&order=asc
+
+{!! \Sort::getSortUrl('name', 'asc', ['locale' => 'uk']) !!}
+// http://test.test?sort=name&order=asc&locale=uk
+
+{!! \Sort::getNextOrder() !!}
+// asc|desc
 ```
