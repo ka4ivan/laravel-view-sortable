@@ -18,6 +18,9 @@
         "php": "^8.0.2",
         "illuminate/support": "^9.0|^10.0|^11.0|^12.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
     "autoload": {
         "psr-4": {
             "Ka4ivan\\ViewSortable\\": "src"
