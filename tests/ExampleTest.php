@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Instagram\Test;
+namespace Ka4ivan\ViewSortable\Test;
 
 use PHPUnit\Framework\TestCase;
 
