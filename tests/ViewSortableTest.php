@@ -85,11 +85,11 @@ class ViewSortableTest extends TestCase
 
     public function test_facade_next_order()
     {
-        $this->assertEquals('asc', \Sort::getNextOrder());
+        $this->assertEquals('desc', \Sort::getNextOrder());
     }
 
     public function test_facade_next_order_with_params()
     {
-        $this->assertEquals('desc', \Sort::getNextOrder('asc'));
+        $this->assertEquals('asc', \Sort::getNextOrder('desc'));
     }
 }

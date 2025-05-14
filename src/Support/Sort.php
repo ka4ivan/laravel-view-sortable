@@ -40,7 +40,7 @@ class Sort
      */
     public function getSortUrl(string $sort, string $order = null, array $query = []): string
     {
-        $order = $this->getNextOrder($order);
+        $order = $order ?? $this->getNextOrder();
         $url = $this->buildUrl(array_merge(['sort' => $sort, 'order' => $order], $query));
 
         return $url;
@@ -52,7 +52,7 @@ class Sort
      */
     public function getNextOrder(string $order = null): string
     {
-        $order = $order ?: ((request()->{$this->orderUrl} === 'asc') ? 'desc' : 'asc');
+        $order =  (($order ?? request()->{$this->orderUrl}) === 'asc') ? 'desc' : 'asc';
 
         return $order;
     }
