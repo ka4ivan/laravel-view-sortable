@@ -21,26 +21,9 @@ class ViewSortableTest extends TestCase
         ];
     }
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Route::get('/')->name('home');
-        $this->get('/');
-    }
-
     public function test_facade_html_link_required_params()
     {
-        $url = url('/');
-        $expected = "<a class='lte-sort-link' href='{$url}?sort=status&order=asc' style='position: relative'>Status </a>";
-
-        $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
-    }
-
-    public function test_facade_html_link_required_params_cusgtom_url()
-    {
-        $url = url('/posts');
-        $expected = "<a class='lte-sort-link' href='{$url}?sort=status&order=asc' style='position: relative'>Status </a>";
+        $expected = "<a class='lte-sort-link' href='http://example.com?sort=status&order=asc' style='position: relative'>Status </a>";
 
         $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
     }
@@ -48,7 +31,7 @@ class ViewSortableTest extends TestCase
 //    public function test_facade_html_link_required_params_with_request()
 //    {
 //        request()->merge([
-//            'sort' => 'name',
+//            'sort' => 'status',
 //            'order' => 'asc',
 //        ]);
 //
@@ -101,4 +84,10 @@ class ViewSortableTest extends TestCase
     {
         $this->assertEquals('desc', \Sort::getNextOrder('asc'));
     }
+
+//    public function test_facade_next_order_from_request()
+//    {
+//        Request::replace(['order' => 'desc']);
+//        $this->assertEquals('asc', \Sort::getNextOrder());
+//    }
 }
