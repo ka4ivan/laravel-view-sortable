@@ -25,15 +25,22 @@ class ViewSortableTest extends TestCase
     {
         parent::setUp();
 
-        \URL::forceRootUrl('http://example.com');
-
         Route::get('/')->name('home');
         $this->get('/');
     }
 
     public function test_facade_html_link_required_params()
     {
-        $expected = "<a class='lte-sort-link' href='http://example.com?sort=status&order=asc' style='position: relative'>Status </a>";
+        $url = url('/');
+        $expected = "<a class='lte-sort-link' href='{$url}?sort=status&order=asc' style='position: relative'>Status </a>";
+
+        $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
+    }
+
+    public function test_facade_html_link_required_params_cusgtom_url()
+    {
+        $url = url('/posts');
+        $expected = "<a class='lte-sort-link' href='{$url}?sort=status&order=asc' style='position: relative'>Status </a>";
 
         $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
     }
