@@ -21,6 +21,13 @@ class ViewSortableTest extends TestCase
         ];
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        \Illuminate\Support\Facades\URL::forceRootUrl('http://example.com');
+    }
+
     public function test_facade_html_link_required_params()
     {
         $expected = "<a class='lte-sort-link' href='http://example.com?sort=status&order=asc' style='position: relative'>Status </a>";
