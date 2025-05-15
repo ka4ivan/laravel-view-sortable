@@ -24,7 +24,7 @@ class ViewSortableTest extends TestCase
 
         Route::get('/')->name('home');
 
-        $request = Request::create('http://example.com/', 'GET');
+        $request = Request::create('http://example.com', 'GET');
         $this->app->instance('request', $request);
     }
 
