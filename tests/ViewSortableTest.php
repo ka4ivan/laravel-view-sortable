@@ -23,7 +23,9 @@ class ViewSortableTest extends TestCase
         config(['app.url' => 'http://example.com']);
 
         Route::get('/')->name('home');
-        $this->get('/');
+
+        $request = Request::create('http://example.com/', 'GET');
+        $this->app->instance('request', $request);
     }
 
     public function test_facade_html_link_required_params()
