@@ -37,28 +37,28 @@ class ViewSortableTest extends TestCase
             'order' => 'asc',
         ]);
 
-        $expected = '<a class="lte-sort-link" href="http://example.com/posts?sort=status&order=desc" style="position: relative">Status </a>';
+        $expected = '<a class="lte-sort-link" href="http://example.com/posts?sort=status&order=desc" style="position: relative">Status <i class="fas fa-long-arrow-alt-up" style="position: absolute; top: 3px; right: -10px"></i></a>';
 
         $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
     }
 
     public function test_facade_html_link_all_params()
     {
-        $expected = '<a class="text-black" href="http://example.com/posts?sort=city&order=desc&locale=uk" style="position: relative">City </a>';
+        $expected = "<a class='text-black' href='http://example.com/posts?sort=city&order=desc&locale=uk' style='position: relative'>City </a>";
 
         $this->assertEquals($expected, \Sort::getSortLink(sort: 'city', text: 'City', order: 'desc', class: 'text-black', query: ['locale' => 'uk']));
     }
 
     public function test_static_html_link_required_params()
     {
-        $expected = '<a class="lte-sort-link" href="http://example.com/posts?sort=phone&order=asc" style="position: relative">Phone </a>';
+        $expected = "<a class='lte-sort-link' href='http://example.com/posts?sort=phone&order=asc' style='position: relative'>Phone </a>";
 
         $this->assertEquals($expected, (new Sort)->getSortLink('phone', 'Phone'));
     }
 
     public function test_static_html_link_required_params_from_request()
     {
-        $expected = '<a class="lte-sort-link" href="http://example.com/posts?sort=phone&order=desc" style="position: relative">Phone </a>';
+        $expected = "<a class='lte-sort-link' href='http://example.com/posts?sort=phone&order=desc' style='position: relative'>Phone </a>";
 
         Request::replace(['sort' => 'status', 'order' => 'asc']);
 
