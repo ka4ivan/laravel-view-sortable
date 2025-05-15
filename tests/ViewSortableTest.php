@@ -20,12 +20,12 @@ class ViewSortableTest extends TestCase
     {
         parent::setUp();
 
-        $this->app->instance('request', Request::create('http://example.com', 'GET'));
+        $this->app->instance('request', Request::create('http://example.com/posts', 'GET'));
     }
 
     public function test_facade_html_link_required_params()
     {
-        $expected = "<a class='lte-sort-link' href='http://example.com?sort=status&order=asc' style='position: relative'>Status </a>";
+        $expected = "<a class='lte-sort-link' href='http://example.com/posts?sort=status&order=asc' style='position: relative'>Status </a>";
 
         $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
     }
