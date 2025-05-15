@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ViewSortableTest extends TestCase
 {
+    protected function defineEnvironment($app)
+    {
+        $app['config']->set('app.url', 'http://example.com');
+    }
+
     protected function getPackageProviders($app)
     {
         return [
@@ -20,12 +25,10 @@ class ViewSortableTest extends TestCase
     {
         parent::setUp();
 
-        config(['app.url' => 'http://example.com']);
+        \URL::forceRootUrl('http://example.com');
 
         Route::get('/')->name('home');
-
-        $request = Request::create('http://example.com', 'GET');
-        $this->app->instance('request', $request);
+        $this->get('/');
     }
 
     public function test_facade_html_link_required_params()
