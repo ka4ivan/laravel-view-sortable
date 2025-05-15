@@ -37,7 +37,7 @@ class ViewSortableTest extends TestCase
             'order' => 'asc',
         ]);
 
-        $expected = '<a class="lte-sort-link" href="http://example.com/posts?sort=status&order=desc" style="position: relative">Status <i class="fas fa-long-arrow-alt-up" style="position: absolute; top: 3px; right: -10px"></i></a>';
+        $expected = "<a class='lte-sort-link' href='http://example.com/posts?sort=status&order=desc' style='position: relative'>Status <i class='fas fa-long-arrow-alt-up' style='position: absolute; top: 3px; right: -10px'></i></a>";
 
         $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
     }
