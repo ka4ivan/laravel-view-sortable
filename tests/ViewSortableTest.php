@@ -60,7 +60,10 @@ class ViewSortableTest extends TestCase
     {
         $expected = "<a class='lte-sort-link' href='http://example.com/posts?sort=phone&order=desc' style='position: relative'>Phone </a>";
 
-        Request::replace(['sort' => 'status', 'order' => 'asc']);
+        request()->merge([
+            'sort' => 'status',
+            'order' => 'asc'],
+        );
 
         $this->assertEquals($expected, (new Sort)->getSortLink('phone', 'Phone'));
     }
@@ -98,7 +101,10 @@ class ViewSortableTest extends TestCase
 
     public function test_facade_next_order_from_request()
     {
-        Request::replace(['sort' => 'status', 'order' => 'desc']);
+        request()->merge([
+            'sort' => 'status',
+            'order' => 'desc',
+        ]);
 
         $this->assertEquals('asc', \Sort::getNextOrder());
     }
