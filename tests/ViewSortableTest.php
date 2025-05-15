@@ -29,12 +29,12 @@ class ViewSortableTest extends TestCase
         $this->get('/');
     }
 
-//    public function test_facade_html_link_required_params()
-//    {
-//        $expected = '<a class="lte-sort-link" href="http://example.com?sort=status&order=asc" style="position: relative">Status </a>';
-//
-//        $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
-//    }
+    public function test_facade_html_link_required_params()
+    {
+        $expected = '<a class="lte-sort-link" href="http://example.com?sort=status&order=asc" style="position: relative">Status </a>';
+
+        $this->assertEquals($expected, \Sort::getSortLink('status', 'Status'));
+    }
 
 //    public function test_facade_html_link_required_params_with_request()
 //    {
