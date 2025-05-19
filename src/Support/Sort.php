@@ -20,13 +20,12 @@ class Sort
      * @param string|null $text
      * @param string|null $order
      * @param string $class
+     * @param array $query
      * @return string
      */
-    public function getSortLink(string $sort, string $text = null, string $order = null, string $class = 'lte-sort-link'): string
+    public function getSortLink(string $sort, string $text = null, string $order = null, string $class = 'lte-sort-link', array $query = []): string
     {
-        $order = $order ?: ((request()->{$this->orderUrl} === 'asc') ? 'desc' : 'asc');
-
-        $url = $this->buildUrl([$this->sortUrl => $sort, $this->orderUrl => $order]);
+        $url = $this->getSortUrl($sort, $order, $query);
         $image = $this->getIcon($sort);
         $text = $text ?: $sort;
 
@@ -36,14 +35,26 @@ class Sort
     /**
      * @param string $sort
      * @param string|null $order
+     * @param array $query
      * @return string
      */
-    public function getSortUrl(string $sort, string $order = null): string
+    public function getSortUrl(string $sort, string $order = null, array $query = []): string
     {
-        $order = $order ?: ((request()->{$this->orderUrl} === 'asc') ? 'desc' : 'asc');
-        $url = $this->buildUrl(['sort' => $sort, 'order' => $order]);
+        $order = $order ?? $this->getNextOrder();
+        $url = $this->buildUrl(array_merge(['sort' => $sort, 'order' => $order], $query));
 
         return $url;
+    }
+
+    /**
+     * @param string|null $order
+     * @return string
+     */
+    public function getNextOrder(string $order = null): string
+    {
+        $order =  (($order ?? request()->{$this->orderUrl}) === 'asc') ? 'desc' : 'asc';
+
+        return $order;
     }
 
     /**
