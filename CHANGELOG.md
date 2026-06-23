@@ -1,6 +1,9 @@
  
 # Changelog
 
+## 1.1.1 - 2026-06-18
+- Laravel 13 support
+
 ## 1.1.0 - 2025-05-14
 - New method: `getNextOrder()`
 - Ability to set additional query parameters for the sorting link
