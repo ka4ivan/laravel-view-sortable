@@ -1,6 +1,9 @@
  
 # Changelog
 
+## 1.1.2 - 2026-08-04
+- Fix Namespace Bug
+
 ## 1.1.1 - 2026-06-18
 - Laravel 13 support
 

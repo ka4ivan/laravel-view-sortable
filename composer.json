@@ -45,7 +45,7 @@
                 "Ka4ivan\\ViewSortable\\ServiceProvider"
             ],
             "aliases": {
-                "Sort": "Ka4ivan\\ViewSortable3\\Facades\\Sort"
+                "Sort": "Ka4ivan\\ViewSortable\\Facades\\Sort"
             }
         }
     },
