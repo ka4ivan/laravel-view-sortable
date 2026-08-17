@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ka4ivan\ViewSortable;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
@@ -23,7 +25,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/view-sortable.php', 'view-sortable');
 
-        $this->app->bind(\Ka4ivan\ViewSortable\Sort::class, function () {
+        $this->app->bind(\Ka4ivan\ViewSortable\Support\Sort::class, function () {
             return new \Ka4ivan\ViewSortable\Support\Sort;
         });
 

@@ -25,10 +25,7 @@
     "autoload": {
         "psr-4": {
             "Ka4ivan\\ViewSortable\\": "src"
-        },
-        "files": [
-            "src/Support/Sort.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -45,7 +42,7 @@
                 "Ka4ivan\\ViewSortable\\ServiceProvider"
             ],
             "aliases": {
-                "Sort": "Ka4ivan\\ViewSortable3\\Facades\\Sort"
+                "Sort": "Ka4ivan\\ViewSortable\\Facades\\Sort"
             }
         }
     },
