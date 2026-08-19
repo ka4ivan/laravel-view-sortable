@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ka4ivan\ViewSortable\Support;
 
 class Sort
@@ -9,10 +11,8 @@ class Sort
 
     public function __construct()
     {
-        if (is_null($this->sortUrl) || is_null($this->orderUrl)) {
-            $this->sortUrl = config('view-sortable.url.sort', 'sort');
-            $this->orderUrl = config('view-sortable.url.order', 'order');
-        }
+        $this->sortUrl = config('view-sortable.url.sort', 'sort');
+        $this->orderUrl = config('view-sortable.url.order', 'order');
     }
 
     /**
@@ -23,13 +23,13 @@ class Sort
      * @param array $query
      * @return string
      */
-    public function getSortLink(string $sort, string $text = null, string $order = null, string $class = 'lte-sort-link', array $query = []): string
+    public function getSortLink(string $sort, ?string $text = null, ?string $order = null, string $class = 'lte-sort-link', array $query = []): string
     {
         $url = $this->getSortUrl($sort, $order, $query);
         $image = $this->getIcon($sort);
         $text = $text ?: $sort;
 
-        return "<a class='{$class}' href='{$url}' style='position: relative'>{$text} {$image}</a>";
+        return "<a class='" . e($class) . "' href='{$url}' style='position: relative'>" . e($text) . " {$image}</a>";
     }
 
     /**
@@ -38,7 +38,7 @@ class Sort
      * @param array $query
      * @return string
      */
-    public function getSortUrl(string $sort, string $order = null, array $query = []): string
+    public function getSortUrl(string $sort, ?string $order = null, array $query = []): string
     {
         $order = $order ?? $this->getNextOrder();
         $url = $this->buildUrl(array_merge(['sort' => $sort, 'order' => $order], $query));
@@ -50,9 +50,9 @@ class Sort
      * @param string|null $order
      * @return string
      */
-    public function getNextOrder(string $order = null): string
+    public function getNextOrder(?string $order = null): string
     {
-        $order =  (($order ?? request()->{$this->orderUrl}) === 'asc') ? 'desc' : 'asc';
+        $order = (($order ?? $this->requestString($this->orderUrl)) === 'asc') ? 'desc' : 'asc';
 
         return $order;
     }
@@ -72,14 +72,25 @@ class Sort
      */
     protected function getIcon(string $sort): string
     {
-        if (request()->{$this->sortUrl} === $sort) {
-            $icon = request()->{$this->orderUrl} === 'asc'
+        if ($this->requestString($this->sortUrl) === $sort) {
+            $icon = $this->requestString($this->orderUrl) === 'asc'
                 ? config('view-sortable.icons.asc', 'fas fa-long-arrow-alt-up')
                 : config('view-sortable.icons.desc', 'fas fa-long-arrow-alt-down');
         } else {
             $icon = config('view-sortable.icons.default', '');
         }
 
-        return $icon ? "<i class='{$icon}' style='position: absolute; top: 3px; right: -10px'></i>" : '';
+        return $icon ? "<i class='" . e($icon) . "' style='position: absolute; top: 3px; right: -10px'></i>" : '';
+    }
+
+    /**
+     * Значення query-параметра як рядок, або null — якщо параметра нема чи він не скалярний
+     * (напр. масив на кшталт ?sort[]=x), інакше конкатенація/порівняння впали б на Array to string.
+     */
+    protected function requestString(string $key): ?string
+    {
+        $value = request()->query($key, request()->input($key));
+
+        return is_scalar($value) ? (string) $value : null;
     }
 }
